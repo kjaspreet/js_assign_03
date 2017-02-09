@@ -1,0 +1,38 @@
+Closure in JavaScript
+
+Function’s local variable and parameters are only accessible during function execution. There scope expires when the control returns to the calling function. For eg.:
+
+function myFun(number)
+{
+	let result = number + 2
+	return result
+}
+
+console.log(myFun(10))
+
+Here, the scope of variable result and parameter number expires when control returns from the myFun.
+
+“Closure” functions in JavaScript are the inner function that can access the outer function’s local variables and parameters (along with its own variables and global variables) even after its parent’s (Outer function’s) execution. For eg.:
+function myFun(number)
+{
+	let result 
+	return function myClosure(){  return result = number + 2}
+	
+}
+
+let  temp = myFun(10)
+console.log(temp())
+
+Here, temp is a reference to the instance of the function myClosure( which was created when myFun was in execution). The instance of myClosure maintains a reference to its lexical environment, within which the variable result and parameter number exists. For this reason, when temp is invoked (the “Closure” function executes), the variable result and parameter number remains available for use.
+
+We can also use “Closure Function” by:
+
+let temp = myFun(10) ()
+
+References:
+http://eloquentjavascript.net/03_functions.html
+http://www.w3schools.com/js/js_function_closures.asp
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures
+https://www.youtube.com/watch?v=HjJQ-lvTgWg
+
+
